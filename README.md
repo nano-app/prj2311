@@ -1,5 +1,5 @@
 ## 1. Environment 
-required: dev = test = production 
+required: dev = test = production (it is for me and end customer ! :)
 - windows 10
 - docker
 - php/nodejs/python/mysql/postgres ...
