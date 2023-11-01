@@ -8,7 +8,8 @@
 # HOWTO ###
 # Run >python3 -m flask run --port=8081
 # GET >curl http://127.0.0.1:8081/ports/1
-# PUT >curl -X PUT -H "Content-Type: application/json" -d '{"portName": "swport", "status": "UP","vlanID":"10"}' http://127.0.0.1:8081/ports/updatePort/1
+# PUT >curl -X PUT -H "Content-Type: application/json" -d '{"vlanID":"10"}' http://127.0.0.1:8081/port/updatePortVlanID/1
+# PUT >curl -X PUT -H "Content-Type: application/json" -d '{"status":"UP"}' http://127.0.0.1:8081/port/updatePortStatus/2
 
 from flask import Flask, request, jsonify
 
@@ -57,17 +58,30 @@ def get_port(id):
         return "port not found", 404
     return jsonify(port)
 
-# PUT request to update a specific port by ID
-@app.route('/ports/updatePort/<int:id>', methods=['PUT'])
-def update_port(id):
+
+# PUT request to update vlanID of a port
+@app.route('/port/updatePortVlanID/<int:portid>', methods=['PUT'])
+def update_port_vlanID(portid):
     data = request.get_json()
-    port = next((port for port in ports if port["id"] == id), None)
+    port = next((port for port in ports if port["id"] == portid), None)
     if port is None:
-        return "port not found", 404
-    port["portName"] = data["portName"]
-    port["status"] = data["status"]
+        response = {"status":"fail","message":"fail to update vlanid"}
+        return jsonify(response), 404
     port["vlanID"] = data["vlanID"]
-    return jsonify(port)
+    return jsonify({"status":"success","message":port})
+
+
+# PUT request to update status of a port, status MUST be 'UP' or 'DOWN'
+@app.route('/port/updatePortStatus/<int:portid>', methods=['PUT'])
+def update_port_status(portid):
+    data = request.get_json()
+    port = next((port for port in ports if port["id"] == portid), None)
+    if port is None:
+        response = {"status":"fail","message":"fail to update port status"}
+        return jsonify(response), 404
+    port["status"] = data["status"]
+    return jsonify({"status":"success","message":port})
+
 
 ## SWITCH ##
 # GET request to retrieve a list of all switches.. this is for backend call
@@ -82,14 +96,15 @@ def get_switch(id):
     # --> get from real switch
     switch = next((switch for switch in switches if switch["id"] == id), None)
     if switch is None:
-        return "switch not found", 404
-    return jsonify(switch)
+        response = {"status":"fail","message":"port not found"}
+        return jsonify(response), 404
+    return jsonify({"status":"success","message":switch})
 
 
 # GET request to get mac-address from all real switch and update to DB, call from backend..
 @app.route('/switches/getAllMACAddresses', methods=['GET'])
 def get_allMACAddress():
-    return jsonify(MACAddresses)
+    return jsonify({"status":"success","message":MACAddresses})
 
 if __name__ == '__main__':
     app.run(debug=True)
