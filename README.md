@@ -13,6 +13,7 @@ get port info by ID (real-time from actual switch)
 
 put (upate) port status/vlan.. json payload 
 > curl -X PUT -H "Content-Type: application/json" -d '{"vlanID":"10"}' http://127.0.0.1:5000/port/updatePortVlanID/1
+
 > curl -X PUT -H "Content-Type: application/json" -d '{"status":"UP"}' http://127.0.0.1:5000/port/updatePortStatus/2
 
 -------------
