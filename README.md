@@ -9,19 +9,19 @@ docker run --name myrest -p 5000:5000 -d andrewxplorer/prj2311_switch_restapi:v.
 
 ## 3. how to test functions of network_api:
 ------------
-### function: get port info by ID, real-time from switch
+>> get port info by ID (real-time from actual switch) 
 curl http://127.0.0.1:8081/ports/getPortRealInfo/1
 
-### function: put (upate) port status/vlan.. json payload 
+>> put (upate) port status/vlan.. json payload 
 curl -X PUT -H "Content-Type: application/json" -d '{"vlanID":"10"}' http://127.0.0.1:8081/port/updatePortVlanID/1
 curl -X PUT -H "Content-Type: application/json" -d '{"status":"UP"}' http://127.0.0.1:8081/port/updatePortStatus/2
 
 -------------
-### fucntion: get real time metrics from switch
+>> get real time metrics from switch
 curl http://localhost:5000/switches/getSwitchRealInfo/1
 
 -------------
-### fuction: get mac address real-time from all switch (!!) 
+>> get mac address real-time from all switch (!!) 
 curl http://localhost:5000/switches/getAllMACAddresses 
 
 
