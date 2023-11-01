@@ -5,15 +5,16 @@ required: dev = test = production (=> make it easy for dev/ test and implement a
 - php/nodejs/python/mysql/postgres ...
 
 ## 2. how to run network_api from docker:
-docker run --name myrest -p 5000:5000 -d andrewxplorer/prj2311_switch_restapi:v.0.1
+docker run --name myrest -p 5000:5000 -d andrewxplorer/prj2311_switch_restapi:v.0.2
 
-## 3. how to test function of network_api:
+## 3. how to test functions of network_api:
 ------------
 ### function: get port info by ID, real-time from switch
-curl http://127.0.0.1:8081/ports/1
+curl http://127.0.0.1:8081/ports/getPortRealInfo/1
 
 ### function: put (upate) port status/vlan.. json payload 
-curl -X PUT -H "Content-Type: application/json" -d '{"portName": "swport", "status": "UP","vlanID":"10"}' http://127.0.0.1:8081/ports/updatePort/1
+curl -X PUT -H "Content-Type: application/json" -d '{"vlanID":"10"}' http://127.0.0.1:8081/port/updatePortVlanID/1
+curl -X PUT -H "Content-Type: application/json" -d '{"status":"UP"}' http://127.0.0.1:8081/port/updatePortStatus/2
 
 -------------
 ### fucntion: get real time metrics from switch
