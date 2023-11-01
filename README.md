@@ -9,11 +9,11 @@ required: dev = test = production (=> make it easy for dev/ test and implement a
 
 ## 3. how to test functions of network_api:
 get port info by ID (real-time from actual switch) 
-> curl http://127.0.0.1:8081/ports/getPortRealInfo/1
+> curl http://127.0.0.1:5000/ports/getPortRealInfo/1
 
 put (upate) port status/vlan.. json payload 
-> curl -X PUT -H "Content-Type: application/json" -d '{"vlanID":"10"}' http://127.0.0.1:8081/port/updatePortVlanID/1
-> curl -X PUT -H "Content-Type: application/json" -d '{"status":"UP"}' http://127.0.0.1:8081/port/updatePortStatus/2
+> curl -X PUT -H "Content-Type: application/json" -d '{"vlanID":"10"}' http://127.0.0.1:5000/port/updatePortVlanID/1
+> curl -X PUT -H "Content-Type: application/json" -d '{"status":"UP"}' http://127.0.0.1:5000/port/updatePortStatus/2
 
 -------------
 get real time metrics from switch
