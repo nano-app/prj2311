@@ -7,7 +7,7 @@ required: dev = test = production (=> make it easy for dev/ test and implement a
 ## 2. how to run network_api from docker:
 > docker run --name myrest -p 5000:5000 -d andrewxplorer/prj2311_switch_restapi:v.0.2
 
-## 3. how to test functions of network_api:
+## 3. Function calls howto:
 get port info by ID (real-time from actual switch) 
 > curl http://127.0.0.1:5000/ports/getPortRealInfo/1
 
