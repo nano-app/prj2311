@@ -8,7 +8,8 @@ required: dev = test = production (=> make it easy for dev/ test and implement a
 > docker run --name myrest -p 5000:5000 -d andrewxplorer/prj2311_switch_restapi:v.0.2
 
 ## 3. Function calls:
-get port info by ID (real-time from actual switch) 
+get port info by ID (real-time from actual switch)
+(!) change the last '1','2' .. by actual portID (from db table/collection)
 > curl http://127.0.0.1:5000/ports/getPortRealInfo/1
 
 change vlanID of a port
