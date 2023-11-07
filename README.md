@@ -22,7 +22,7 @@ turn off a port (status = DOWN)
 > curl -X PUT -H "Content-Type: application/json" -d '{"status":"DOWN"}' http://127.0.0.1:5000/port/updatePortStatus/2
 
 -------------
-get real time metrics from switch
+get real time metrics from switch by switchID (replace the last number ('1'..'15') with actual switchID in the database)
 > curl http://localhost:5000/switches/getSwitchRealInfo/1
 
 -------------
